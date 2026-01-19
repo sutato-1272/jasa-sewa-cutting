@@ -23,7 +23,7 @@
 
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏗️</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -31,23 +31,26 @@
         :root {
             --neon-orange: #FF5100;
             --dark-metal: #0a0a0a;
-            --titanium: #1a1a1a;
+            --titanium: #141414;
         }
         
         body { font-family: 'Rajdhani', sans-serif; background-color: var(--dark-metal); color: #e5e5e5; overflow-x: hidden; }
-        h1, h2, h3, .brand-font { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: -1px; }
+        
+        /* Typography Tuning */
+        h1, h2, h3, .brand-font { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: -0.5px; }
+        p { letter-spacing: 0.5px; }
 
         /* TEKSTUR MESH GLOBAL */
         .mesh-bg {
             background-color: transparent;
             background-image: radial-gradient(#222 1px, transparent 1px);
-            background-size: 20px 20px;
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3;
+            background-size: 30px 30px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.4;
         }
 
         /* HERO ANIMATION */
         .hero-section {
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), #0a0a0a), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1920');
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), #0a0a0a), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1920');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -56,57 +59,82 @@
         
         .scanline {
             width: 100%;
-            height: 5px;
-            background: rgba(255, 81, 0, 0.3);
+            height: 2px;
+            background: rgba(255, 81, 0, 0.4);
             position: absolute;
             z-index: 10;
-            box-shadow: 0 0 20px rgba(255, 81, 0, 0.5);
-            animation: scan 4s linear infinite;
+            box-shadow: 0 0 15px rgba(255, 81, 0, 0.5);
+            animation: scan 5s linear infinite;
         }
         @keyframes scan { 0% {top: 0%} 100% {top: 100%} }
 
-        /* GLASS CARD EFFECT (TITANIUM STYLE) */
+        /* GLASS CARD EFFECT */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.4s ease-out;
             position: relative;
             overflow: hidden;
         }
-        .glass-card::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
-            transform: skewX(-25deg); transition: 0.5s;
-        }
-        .glass-card:hover::before { left: 150%; }
         .glass-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: var(--neon-orange);
-            box-shadow: 0 0 30px rgba(255, 81, 0, 0.2);
+            box-shadow: 0 0 25px rgba(255, 81, 0, 0.15);
         }
 
         /* GLOWING TEXT */
-        .text-glow { text-shadow: 0 0 15px rgba(255, 81, 0, 0.6); }
+        .text-glow { text-shadow: 0 0 20px rgba(255, 81, 0, 0.5); }
 
-        /* BUTTON LASER */
+        /* ========================================= */
+        /* [MODIFIKASI] BUTTON SINAR BERJALAN (SWEEP) */
+        /* ========================================= */
         .btn-laser {
             background: linear-gradient(90deg, #ff3d00, #ff8c00);
-            position: relative; overflow: hidden; z-index: 1; border: none;
+            position: relative; 
+            overflow: hidden; 
+            z-index: 1; 
+            border: none;
+            box-shadow: 0 0 20px rgba(255, 61, 0, 0.3);
+            transition: all 0.3s;
         }
+        
+        .btn-laser:hover {
+            box-shadow: 0 0 30px rgba(255, 61, 0, 0.6);
+            transform: scale(1.02);
+        }
+
+        /* Efek Sinar Putih Berjalan */
         .btn-laser::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-            transition: 0.5s;
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.6),
+                transparent
+            );
+            transform: skewX(-20deg);
+            /* Animasi Loop: Berjalan setiap 3 detik */
+            animation: shine-anim 3s infinite;
         }
-        .btn-laser:hover::after { left: 100%; }
+
+        @keyframes shine-anim {
+            0% { left: -150%; }
+            30% { left: 150%; } /* Melintas Cepat */
+            100% { left: 150%; } /* Jeda Diam */
+        }
 
         /* STICKY CTA BLUR */
         .sticky-cta {
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
-            border-top: 1px solid var(--neon-orange);
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.8);
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 81, 0, 0.3);
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.8);
         }
     </style>
 </head>
@@ -114,288 +142,215 @@
 
     <div class="mesh-bg"></div>
 
-    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/10 bg-black/80 backdrop-blur-xl">
-        <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto p-4 md:px-8">
-            <a href="#" class="flex items-center gap-2">
-                <i class="fa-solid fa-cube text-3xl text-[var(--neon-orange)] animate-pulse"></i>
+    <nav class="fixed w-full z-50 top-0 start-0 border-b border-white/5 bg-[#0a0a0a]/90 backdrop-blur-md">
+        <div class="max-w-7xl flex flex-wrap items-center justify-between mx-auto px-4 py-3 md:px-8">
+            <a href="#" class="flex items-center gap-3">
+                <i class="fa-solid fa-cube text-2xl text-[var(--neon-orange)] animate-pulse"></i>
                 <div class="flex flex-col">
-                    <span class="text-2xl font-bold tracking-tighter text-white brand-font leading-none">PT. SMT</span>
-                    <span class="text-[10px] tracking-[0.3em] text-gray-400 uppercase">Concrete Engineering</span>
+                    <span class="text-xl font-bold tracking-tight text-white brand-font leading-none">PT. SMT</span>
+                    <span class="text-[9px] tracking-[0.2em] text-gray-500 uppercase font-medium">Concrete Specialist</span>
                 </div>
             </a>
-            <a href="https://wa.me/6281219148033?text=Halo%20PT%20SMT" class="hidden md:flex items-center gap-2 border border-[var(--neon-orange)] text-[var(--neon-orange)] hover:bg-[var(--neon-orange)] hover:text-white px-6 py-2 rounded-full transition-all duration-300 font-bold tracking-wider text-sm">
-                <i class="fa-brands fa-whatsapp text-lg"></i> HUBUNGI KAMI
+            <a href="https://wa.me/6281219148033?text=Halo%20PT%20SMT" class="hidden md:flex items-center gap-2 border border-[var(--neon-orange)] text-[var(--neon-orange)] hover:bg-[var(--neon-orange)] hover:text-white px-5 py-2 rounded text-xs font-bold tracking-widest transition-all duration-300">
+                <i class="fa-brands fa-whatsapp text-sm"></i> HUBUNGI KAMI
             </a>
         </div>
     </nav>
 
-    <header class="hero-section min-h-screen flex items-center justify-center text-center overflow-hidden">
+    <header class="hero-section min-h-screen flex items-center justify-center text-center overflow-hidden pt-10">
         <div class="scanline"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/50"></div>
         
-        <div class="relative z-10 max-w-5xl px-4" data-aos="zoom-in">
-            <div class="inline-block border border-white/20 bg-white/5 backdrop-blur-md px-4 py-1 rounded-full mb-6">
-                <span class="text-[var(--neon-orange)] text-xs font-bold tracking-[0.3em] uppercase">The Future of Demolition</span>
+        <div class="relative z-10 max-w-4xl px-4" data-aos="zoom-in">
+            <div class="inline-block border border-white/10 bg-white/5 backdrop-blur-sm px-4 py-1.5 rounded mb-6">
+                <span class="text-[var(--neon-orange)] text-[10px] md:text-xs font-bold tracking-[0.25em] uppercase">The Future of Demolition</span>
             </div>
-            <h1 class="text-4xl md:text-7xl font-bold text-white mb-6 leading-tight mix-blend-lighten">
+            
+            <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight mix-blend-lighten">
                 JASA CUTTING BETON <br>
                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#ff3d00] to-[#ff9100] text-glow">HIGH PRECISION</span>
             </h1>
-            <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light leading-relaxed border-l-2 border-[var(--neon-orange)] pl-6 text-left md:text-center md:border-l-0 md:pl-0">
+            <p class="text-gray-300 text-sm md:text-lg mb-8 max-w-2xl mx-auto font-light leading-relaxed px-4 md:px-0">
                 Teknologi pemotongan beton tercanggih: <b>Wall Saw, Wire Saw, & Coring</b>. 
                 Tanpa getaran, tanpa debu, akurasi milimeter. Solusi untuk Gedung Bertingkat & Proyek Vital.
             </p>
             
-            <div class="flex flex-col md:flex-row gap-4 justify-center">
-                <a href="#layanan" class="group relative px-8 py-4 bg-transparent border border-white/30 text-white font-bold uppercase tracking-widest overflow-hidden hover:border-[var(--neon-orange)] transition-colors">
-                    <span class="relative z-10">Explore Services</span>
+            <div class="flex flex-col md:flex-row gap-3 justify-center px-8 md:px-0">
+                <a href="#layanan" class="group relative px-6 py-3.5 bg-transparent border border-white/20 text-white text-xs md:text-sm font-bold uppercase tracking-widest overflow-hidden hover:border-[var(--neon-orange)] transition-colors rounded-sm">
+                    <span class="relative z-10">Lihat Layanan</span>
                     <div class="absolute inset-0 bg-[var(--neon-orange)] transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
                 </a>
-                <a href="https://wa.me/6281219148033" class="btn-laser px-8 py-4 text-white font-bold uppercase tracking-widest shadow-[0_0_40px_rgba(255,81,0,0.4)] hover:shadow-[0_0_60px_rgba(255,81,0,0.6)] transition-all">
+                
+                <a href="https://wa.me/6281219148033" class="btn-laser px-6 py-3.5 text-white text-xs md:text-sm font-bold uppercase tracking-widest rounded-sm">
                     <i class="fa-brands fa-whatsapp mr-2"></i> Fast Response
                 </a>
             </div>
         </div>
     </header>
 
-    <div class="relative z-20 -mt-20 max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="glass-card p-6 text-center border-t-4 border-t-[var(--neon-orange)]">
-            <h3 class="text-4xl font-bold text-white mb-1">10+</h3>
-            <p class="text-[10px] uppercase tracking-widest text-gray-400">Years Experience</p>
-        </div>
-        <div class="glass-card p-6 text-center border-t-4 border-t-[var(--neon-orange)]">
-            <h3 class="text-4xl font-bold text-white mb-1">24/7</h3>
-            <p class="text-[10px] uppercase tracking-widest text-gray-400">Emergency Unit</p>
-        </div>
-        <div class="glass-card p-6 text-center border-t-4 border-t-[var(--neon-orange)]">
-            <h3 class="text-4xl font-bold text-white mb-1">100%</h3>
-            <p class="text-[10px] uppercase tracking-widest text-gray-400">Safety First</p>
-        </div>
-        <div class="glass-card p-6 text-center border-t-4 border-t-[var(--neon-orange)]">
-            <h3 class="text-4xl font-bold text-white mb-1">TOP</h3>
-            <p class="text-[10px] uppercase tracking-widest text-gray-400">Quality Equipment</p>
-        </div>
+    <div class="relative z-20 -mt-16 max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="glass-card p-4 text-center border-t-2 border-t-[var(--neon-orange)]"><h3 class="text-2xl md:text-3xl font-bold text-white mb-1">10+</h3><p class="text-[9px] uppercase tracking-widest text-gray-400">Tahun Pengalaman</p></div>
+        <div class="glass-card p-4 text-center border-t-2 border-t-[var(--neon-orange)]"><h3 class="text-2xl md:text-3xl font-bold text-white mb-1">24/7</h3><p class="text-[9px] uppercase tracking-widest text-gray-400">Layanan Siaga</p></div>
+        <div class="glass-card p-4 text-center border-t-2 border-t-[var(--neon-orange)]"><h3 class="text-2xl md:text-3xl font-bold text-white mb-1">100%</h3><p class="text-[9px] uppercase tracking-widest text-gray-400">Safety First</p></div>
+        <div class="glass-card p-4 text-center border-t-2 border-t-[var(--neon-orange)]"><h3 class="text-2xl md:text-3xl font-bold text-white mb-1">TOP</h3><p class="text-[9px] uppercase tracking-widest text-gray-400">Alat Modern</p></div>
     </div>
 
-    <section id="layanan" class="py-24 relative">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex items-end justify-between mb-16 border-b border-white/10 pb-8">
+    <section id="layanan" class="py-20 relative">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex items-end justify-between mb-12 border-b border-white/5 pb-6">
                 <div>
-                    <h2 class="text-3xl md:text-5xl font-bold text-white brand-font mb-2">OUR <span class="text-[var(--neon-orange)]">ARSENAL</span></h2>
-                    <p class="text-gray-400 tracking-widest uppercase text-xs">Advanced Concrete Cutting Technology</p>
+                    <h2 class="text-2xl md:text-4xl font-bold text-white brand-font mb-1">TEKNOLOGI & <span class="text-[var(--neon-orange)]">LAYANAN</span></h2>
+                    <p class="text-gray-400 tracking-[0.15em] uppercase text-[10px] md:text-xs">Solusi Pemotongan Beton Presisi Tinggi</p>
                 </div>
-                <div class="hidden md:block">
-                    <i class="fa-solid fa-gears text-4xl text-white/20"></i>
-                </div>
+                <div class="hidden md:block"><i class="fa-solid fa-gears text-3xl text-white/10"></i></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card rounded-xl group cursor-pointer" onclick="openWA('Wall Saw')">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=800" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <span class="text-[var(--neon-orange)] font-bold text-xs border border-[var(--neon-orange)] px-2 py-1 mb-2 inline-block">BEST SELLER</span>
-                            <h3 class="text-2xl font-bold text-white">WALL SAW</h3>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card rounded-lg group cursor-pointer" onclick="openWA('Wall Saw')">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://mandiribersamasejati.biz.id/gambarbebas/20251218-022452_kontraktor-wire-saw-bongkar-beton-industri-cikarang-05.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90"></div>
+                        <div class="absolute bottom-4 left-4"><span class="text-[var(--neon-orange)] font-bold text-[10px] border border-[var(--neon-orange)] px-2 py-0.5 mb-2 inline-block rounded-sm">BEST SELLER</span><h3 class="text-xl font-bold text-white">WALL SAW</h3></div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Pemotongan vertikal presisi tinggi untuk dinding beton bertulang, bukaan pintu, jendela, dan shaft.</p>
-                        <div class="flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="text-xs text-gray-500 uppercase tracking-wider">Depth up to 50cm</span>
-                            <i class="fa-solid fa-arrow-right -rotate-45 text-[var(--neon-orange)] group-hover:translate-x-1 transition"></i>
-                        </div>
+                    <div class="p-5">
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">Pemotongan vertikal presisi tinggi untuk dinding beton bertulang, bukaan pintu, jendela, dan shaft.</p>
+                        <div class="flex justify-between items-center border-t border-white/5 pt-3"><span class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Kedalaman s/d 50cm</span><i class="fa-solid fa-arrow-right -rotate-45 text-[var(--neon-orange)] text-sm group-hover:translate-x-1 transition"></i></div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl group cursor-pointer" onclick="openWA('Floor Saw')">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h3 class="text-2xl font-bold text-white">FLOOR SAW</h3>
-                        </div>
+                <div class="glass-card rounded-lg group cursor-pointer" onclick="openWA('Floor Saw')">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://dongkrakusaha.com/gambarbebas/1140420251218-012332_spesialis-cutting-beton-premium-tanpa-debu-pondok-indah-05.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90"></div>
+                        <div class="absolute bottom-4 left-4"><h3 class="text-xl font-bold text-white">FLOOR SAW</h3></div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Spesialis pemotongan lantai beton, rigid pavement jalan raya, dan trenching kabel bawah tanah.</p>
-                        <div class="flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="text-xs text-gray-500 uppercase tracking-wider">High Speed</span>
-                            <i class="fa-solid fa-arrow-right -rotate-45 text-[var(--neon-orange)] group-hover:translate-x-1 transition"></i>
-                        </div>
+                    <div class="p-5">
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">Spesialis pemotongan lantai beton, rigid pavement jalan raya, dan trenching kabel bawah tanah.</p>
+                        <div class="flex justify-between items-center border-t border-white/5 pt-3"><span class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">High Speed Cutting</span><i class="fa-solid fa-arrow-right -rotate-45 text-[var(--neon-orange)] text-sm group-hover:translate-x-1 transition"></i></div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl group cursor-pointer md:row-span-2 border-l-4 border-l-[var(--neon-orange)]" onclick="openWA('Wire Saw')">
-                    <div class="h-80 md:h-full overflow-hidden relative">
-                        <img src="https://plus.unsplash.com/premium_photo-1664302152996-339243763eb8?q=80&w=800" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
-                        <div class="absolute bottom-8 left-6 right-6">
-                            <h3 class="text-4xl font-bold text-white mb-2 brand-font italic">WIRE SAW</h3>
-                            <p class="text-gray-300 text-sm mb-6 leading-relaxed">
-                                The Ultimate Solution. Pemotongan beton super tebal menggunakan kawat berlian. 
-                                Mampu memotong jembatan, pondasi mesin, hingga pilar bawah air.
-                            </p>
-                            <button class="w-full btn-laser py-4 font-bold text-white uppercase tracking-widest">
-                                Consult Now <i class="fa-solid fa-chevron-right ml-2"></i>
+                <div class="glass-card rounded-lg group cursor-pointer md:row-span-2 border-l-2 border-l-[var(--neon-orange)]" onclick="openWA('Wire Saw')">
+                    <div class="h-72 md:h-full overflow-hidden relative">
+                        <img src="https://dongkrakusaha.com/gambarbebas/1140420251218-012332_spesialis-cutting-beton-premium-tanpa-debu-pondok-indah-04.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent"></div>
+                        <div class="absolute bottom-6 left-5 right-5">
+                            <h3 class="text-3xl font-bold text-white mb-2 brand-font italic">WIRE SAW</h3>
+                            <p class="text-gray-300 text-sm mb-5 leading-relaxed"><b>Solusi Utama.</b> Pemotongan beton super tebal menggunakan kawat berlian. Mampu memotong jembatan, pondasi mesin, hingga pilar bawah air.</p>
+                            
+                            <button class="w-full btn-laser py-3 text-xs font-bold text-white uppercase tracking-widest rounded-sm">
+                                Konsultasi Ahli <i class="fa-solid fa-chevron-right ml-2"></i>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl group cursor-pointer" onclick="openWA('Coring Beton')">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?q=80&w=800" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h3 class="text-2xl font-bold text-white">DIAMOND CORING</h3>
-                        </div>
+                <div class="glass-card rounded-lg group cursor-pointer" onclick="openWA('Coring Beton')">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://mandiribersamasejati.biz.id/gambarbebas/20251218-022452_kontraktor-wire-saw-bongkar-beton-industri-cikarang-01.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90"></div>
+                        <div class="absolute bottom-4 left-4"><h3 class="text-xl font-bold text-white">DIAMOND CORING</h3></div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Pengeboran lubang presisi (Core Drill) untuk jalur pipa mekanikal, angkur, & uji sampel beton.</p>
-                        <div class="flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="text-xs text-gray-500 uppercase tracking-wider">Diameter Variable</span>
-                            <i class="fa-solid fa-arrow-right -rotate-45 text-[var(--neon-orange)] group-hover:translate-x-1 transition"></i>
-                        </div>
+                    <div class="p-5">
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">Pengeboran lubang presisi (Core Drill) untuk jalur pipa mekanikal, angkur, & uji sampel beton.</p>
+                        <div class="flex justify-between items-center border-t border-white/5 pt-3"><span class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Diameter Beragam</span><i class="fa-solid fa-arrow-right -rotate-45 text-[var(--neon-orange)] text-sm group-hover:translate-x-1 transition"></i></div>
                     </div>
                 </div>
 
-                <div class="glass-card rounded-xl group cursor-pointer" onclick="openWA('Bongkar Beton')">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800" 
-                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-90"></div>
-                        <div class="absolute bottom-4 left-4">
-                            <h3 class="text-2xl font-bold text-white">DEMOLITION</h3>
-                        </div>
+                <div class="glass-card rounded-lg group cursor-pointer" onclick="openWA('Bongkar Beton')">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://dongkrakusaha.com/gambarbebas/1140420251218-012332_spesialis-cutting-beton-premium-tanpa-debu-pondok-indah-01.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-0 md:grayscale md:group-hover:grayscale-0">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90"></div>
+                        <div class="absolute bottom-4 left-4"><h3 class="text-xl font-bold text-white">DEMOLITION</h3></div>
                     </div>
-                    <div class="p-6">
-                        <p class="text-gray-400 text-sm mb-4 leading-relaxed">Jasa bongkar beton terkontrol (Controlled Demolition) yang aman untuk struktur di sekitarnya.</p>
-                        <div class="flex justify-between items-center border-t border-white/10 pt-4">
-                            <span class="text-xs text-gray-500 uppercase tracking-wider">Safe & Clean</span>
-                            <i class="fa-solid fa-arrow-right -rotate-45 text-[var(--neon-orange)] group-hover:translate-x-1 transition"></i>
-                        </div>
+                    <div class="p-5">
+                        <p class="text-gray-400 text-sm mb-4 leading-relaxed line-clamp-3">Jasa bongkar beton terkontrol (Controlled Demolition) yang aman untuk struktur di sekitarnya.</p>
+                        <div class="flex justify-between items-center border-t border-white/5 pt-3"><span class="text-[10px] text-gray-500 uppercase tracking-wider font-bold">Aman & Bersih</span><i class="fa-solid fa-arrow-right -rotate-45 text-[var(--neon-orange)] text-sm group-hover:translate-x-1 transition"></i></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 relative border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
+    <section class="py-16 relative border-t border-white/5">
+        <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-8 items-center">
             <div data-aos="fade-right">
-                <h2 class="text-4xl font-bold mb-6 text-white brand-font">OPERATIONAL <span class="text-[var(--neon-orange)]">AREA</span></h2>
-                <p class="text-gray-400 mb-8 leading-relaxed">
-                    Kami melayani proyek strategis di seluruh Jabodetabek dan siap memobilisasi unit berat ke seluruh Indonesia untuk Mega Project.
-                </p>
-                <ul class="space-y-4 text-gray-300">
-                    <li class="flex items-center gap-4 bg-white/5 p-3 rounded border border-white/10">
-                        <i class="fa-solid fa-location-dot text-[var(--neon-orange)]"></i> Jakarta Pusat, Selatan, Barat, Timur, Utara
-                    </li>
-                    <li class="flex items-center gap-4 bg-white/5 p-3 rounded border border-white/10">
-                        <i class="fa-solid fa-industry text-[var(--neon-orange)]"></i> Kawasan Industri Cikarang & Karawang
-                    </li>
-                    <li class="flex items-center gap-4 bg-white/5 p-3 rounded border border-white/10">
-                        <i class="fa-solid fa-plane-departure text-[var(--neon-orange)]"></i> Proyek Infrastruktur Luar Pulau
-                    </li>
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white brand-font">JANGKAUAN <span class="text-[var(--neon-orange)]">OPERASIONAL</span></h2>
+                <p class="text-gray-400 text-sm mb-6 leading-relaxed">Kami melayani proyek strategis di seluruh Jabodetabek dan siap memobilisasi unit berat ke seluruh Indonesia untuk Mega Project.</p>
+                <ul class="space-y-3 text-gray-300 text-xs md:text-sm">
+                    <li class="flex items-center gap-3 bg-white/5 p-2.5 rounded border border-white/5"><i class="fa-solid fa-location-dot text-[var(--neon-orange)]"></i> Jakarta Pusat, Selatan, Barat, Timur, Utara</li>
+                    <li class="flex items-center gap-3 bg-white/5 p-2.5 rounded border border-white/5"><i class="fa-solid fa-industry text-[var(--neon-orange)]"></i> Kawasan Industri Cikarang & Karawang</li>
+                    <li class="flex items-center gap-3 bg-white/5 p-2.5 rounded border border-white/5"><i class="fa-solid fa-plane-departure text-[var(--neon-orange)]"></i> Proyek Infrastruktur Luar Pulau</li>
                 </ul>
             </div>
-            <div class="h-[400px] glass-card rounded-xl p-2" data-aos="fade-left">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253840.4878845067!2d106.68942964643797!3d-6.229728025238563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Special%20Capital%20Region%20of%20Jakarta!5e0!3m2!1sen!2sid!4v1647833000000!5m2!1sen!2sid" 
-                width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy"></iframe>
+            <div class="h-[300px] glass-card rounded-lg p-1" data-aos="fade-left">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d253840.4878845067!2d106.68942964643797!3d-6.229728025238563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e945e34b9d%3A0x5371bf0fdad786a2!2sJakarta%2C%20Special%20Capital%20Region%20of%20Jakarta!5e0!3m2!1sen!2sid!4v1647833000000!5m2!1sen!2sid" width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy"></iframe>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-black/50">
+    <section class="py-16 bg-[#080808]">
         <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-10 text-white brand-font">FREQUENTLY ASKED <span class="text-[var(--neon-orange)]">QUESTIONS</span></h2>
-            <div class="space-y-4">
-                <div class="glass-card p-6 rounded cursor-pointer group" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center font-bold text-lg text-white">
-                        <h3>Berapa harga jasa cutting beton per meter?</h3>
-                        <i class="fa-solid fa-plus text-[var(--neon-orange)] group-hover:rotate-90 transition"></i>
-                    </div>
-                    <div class="hidden mt-4 text-gray-400 text-sm border-t border-white/10 pt-4">
-                        Harga variatif tergantung ketebalan beton, volume, dan lokasi. Hubungi kami untuk survei dan penawaran resmi.
-                    </div>
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-white brand-font">PERTANYAAN <span class="text-[var(--neon-orange)]">UMUM</span></h2>
+            <div class="space-y-3">
+                <div class="glass-card p-4 md:p-5 rounded cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-sm md:text-base text-white"><h3>Berapa harga jasa cutting beton per meter?</h3><i class="fa-solid fa-plus text-[var(--neon-orange)] text-xs group-hover:rotate-90 transition"></i></div>
+                    <div class="hidden mt-3 text-gray-400 text-xs md:text-sm border-t border-white/5 pt-3 leading-relaxed">Harga variatif tergantung ketebalan beton, volume, dan lokasi. Hubungi kami untuk survei dan penawaran resmi.</div>
                 </div>
-                <div class="glass-card p-6 rounded cursor-pointer group" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center font-bold text-lg text-white">
-                        <h3>Apakah pekerjaan menimbulkan debu?</h3>
-                        <i class="fa-solid fa-plus text-[var(--neon-orange)] group-hover:rotate-90 transition"></i>
-                    </div>
-                    <div class="hidden mt-4 text-gray-400 text-sm border-t border-white/10 pt-4">
-                        Minim debu (95% dust-free) karena kami menggunakan metode <i>Wet Cutting</i> (media air). Aman untuk renovasi indoor.
-                    </div>
+                <div class="glass-card p-4 md:p-5 rounded cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-sm md:text-base text-white"><h3>Apakah pekerjaan menimbulkan debu?</h3><i class="fa-solid fa-plus text-[var(--neon-orange)] text-xs group-hover:rotate-90 transition"></i></div>
+                    <div class="hidden mt-3 text-gray-400 text-xs md:text-sm border-t border-white/5 pt-3 leading-relaxed">Minim debu (95% dust-free) karena kami menggunakan metode <i>Wet Cutting</i> (media air). Aman untuk renovasi indoor.</div>
                 </div>
-                <div class="glass-card p-6 rounded cursor-pointer group" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center font-bold text-lg text-white">
-                        <h3>Apakah menyewakan alat saja?</h3>
-                        <i class="fa-solid fa-plus text-[var(--neon-orange)] group-hover:rotate-90 transition"></i>
-                    </div>
-                    <div class="hidden mt-4 text-gray-400 text-sm border-t border-white/10 pt-4">
-                        Ya, kami melayani sewa mesin coring dan cutting dengan atau tanpa operator (S&K berlaku).
-                    </div>
+                <div class="glass-card p-4 md:p-5 rounded cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center font-bold text-sm md:text-base text-white"><h3>Apakah menyewakan alat saja?</h3><i class="fa-solid fa-plus text-[var(--neon-orange)] text-xs group-hover:rotate-90 transition"></i></div>
+                    <div class="hidden mt-3 text-gray-400 text-xs md:text-sm border-t border-white/5 pt-3 leading-relaxed">Ya, kami melayani sewa mesin coring dan cutting dengan atau tanpa operator (S&K berlaku).</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer class="bg-black border-t border-white/10 py-16 relative overflow-hidden">
-        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1 bg-gradient-to-r from-transparent via-[var(--neon-orange)] to-transparent opacity-50"></div>
-        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12 text-sm relative z-10">
+    <footer class="bg-[#050505] border-t border-white/10 py-12 relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-[var(--neon-orange)] to-transparent opacity-30"></div>
+        <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-8 text-xs md:text-sm relative z-10">
             <div class="md:col-span-2">
-                <div class="flex items-center gap-2 mb-6">
-                    <i class="fa-solid fa-cube text-2xl text-[var(--neon-orange)]"></i>
-                    <h3 class="text-2xl font-bold text-white brand-font">PT. SMT</h3>
-                </div>
-                <p class="text-gray-500 mb-6 max-w-sm leading-relaxed">
-                    Mitra terpercaya untuk solusi pemotongan dan pembongkaran beton presisi tinggi. Mengutamakan keselamatan kerja (K3) dan kecepatan hasil.
-                </p>
-                <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded hover:border-[var(--neon-orange)] hover:text-[var(--neon-orange)] transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#" class="w-10 h-10 border border-white/10 flex items-center justify-center rounded hover:border-[var(--neon-orange)] hover:text-[var(--neon-orange)] transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                <div class="flex items-center gap-2 mb-4"><i class="fa-solid fa-cube text-xl text-[var(--neon-orange)]"></i><h3 class="text-xl font-bold text-white brand-font">PT. SMT</h3></div>
+                <p class="text-gray-500 mb-6 max-w-sm leading-relaxed">Mitra terpercaya untuk solusi pemotongan dan pembongkaran beton presisi tinggi. Mengutamakan keselamatan kerja (K3) dan kecepatan hasil.</p>
+                <div class="flex gap-3">
+                    <a href="#" class="w-8 h-8 border border-white/10 flex items-center justify-center rounded hover:border-[var(--neon-orange)] hover:text-[var(--neon-orange)] transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="w-8 h-8 border border-white/10 flex items-center justify-center rounded hover:border-[var(--neon-orange)] hover:text-[var(--neon-orange)] transition"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
             </div>
-
             <div>
-                <h4 class="text-white font-bold mb-6 tracking-widest uppercase text-xs">OFFICIAL NETWORK</h4>
-                <ul class="space-y-4 text-gray-500">
-                    <li><a href="https://jasacuttingbeton.com/" target="_blank" class="hover:text-[var(--neon-orange)] flex items-center gap-2 transition"><i class="fa-solid fa-link text-xs"></i> jasacuttingbeton.com</a></li>
-                    <li><a href="https://cuttingbeton.com/" target="_blank" class="hover:text-[var(--neon-orange)] flex items-center gap-2 transition"><i class="fa-solid fa-link text-xs"></i> cuttingbeton.com</a></li>
+                <h4 class="text-white font-bold mb-4 tracking-widest uppercase text-[10px]">JARINGAN RESMI</h4>
+                <ul class="space-y-3 text-gray-500">
+                    <li><a href="https://jasacuttingbeton.com/" target="_blank" class="hover:text-[var(--neon-orange)] flex items-center gap-2 transition"><i class="fa-solid fa-link text-[10px]"></i> jasacuttingbeton.com</a></li>
+                    <li><a href="https://cuttingbeton.com/" target="_blank" class="hover:text-[var(--neon-orange)] flex items-center gap-2 transition"><i class="fa-solid fa-link text-[10px]"></i> cuttingbeton.com</a></li>
                 </ul>
             </div>
-
             <div>
-                <h4 class="text-white font-bold mb-6 tracking-widest uppercase text-xs">CONTACT HQ</h4>
-                <ul class="space-y-4 text-gray-500">
-                    <li class="flex items-center gap-3"><i class="fa-solid fa-phone text-[var(--neon-orange)]"></i> 0812-1914-8033</li>
-                    <li class="flex items-center gap-3"><i class="fa-solid fa-envelope text-[var(--neon-orange)]"></i> admin@jasacuttingbeton.com</li>
-                    <li class="flex items-center gap-3"><i class="fa-solid fa-map-location text-[var(--neon-orange)]"></i> Jakarta, Indonesia</li>
+                <h4 class="text-white font-bold mb-4 tracking-widest uppercase text-[10px]">KONTAK KANTOR</h4>
+                <ul class="space-y-3 text-gray-500">
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-[var(--neon-orange)]"></i> 0812-1914-8033</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-[var(--neon-orange)]"></i> admin@jasacuttingbeton.com</li>
+                    <li class="flex items-center gap-2"><i class="fa-solid fa-map-location text-[var(--neon-orange)]"></i> Jakarta, Indonesia</li>
                 </ul>
             </div>
         </div>
-        <div class="text-center mt-16 pt-8 border-t border-white/5 text-gray-600 text-[10px] tracking-[0.2em] uppercase">
-            <p>© 2026 PT Sarana Multi Totalindo. Engineering Division.</p>
-        </div>
+        <div class="text-center mt-12 pt-6 border-t border-white/5 text-gray-600 text-[9px] tracking-[0.2em] uppercase"><p>© 2026 PT Sarana Multi Totalindo. Engineering Division.</p></div>
     </footer>
 
-    <div class="sticky-cta fixed bottom-0 left-0 w-full p-4 flex gap-3 md:hidden z-50">
-        <a href="tel:081219148033" class="flex-1 bg-white/10 backdrop-blur text-white font-bold py-3 rounded text-center flex items-center justify-center gap-2 border border-white/20">
+    <div class="sticky-cta fixed bottom-0 left-0 w-full p-3 flex gap-3 md:hidden z-50">
+        <a href="tel:081219148033" class="flex-1 bg-white/5 backdrop-blur text-white text-xs font-bold py-3 rounded text-center flex items-center justify-center gap-2 border border-white/10">
             <i class="fa-solid fa-phone"></i> CALL
         </a>
-        <a href="https://wa.me/6281219148033" class="flex-1 btn-laser text-white font-bold py-3 rounded text-center flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,81,0,0.5)]">
-            <i class="fa-brands fa-whatsapp"></i> WHATSAPP
+        <a href="https://wa.me/6281219148033" class="flex-1 btn-laser text-white text-xs font-bold py-3 rounded text-center flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(255,81,0,0.3)]">
+            <i class="fa-brands fa-whatsapp text-sm"></i> WHATSAPP
         </a>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 800, once: true, offset: 50 });
 
         function openWA(service) {
             window.open(`https://wa.me/6281219148033?text=Halo%20PT%20SMT,%20saya%20tertarik%20dengan%20layanan%20${service}`, '_blank');
